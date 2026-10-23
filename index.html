@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Viver Bem – Cuidado na Terceira Idade</title>
+  <meta name="description" content="Projeto extensionista com orientações de saúde e cuidado para a terceira idade.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Paleta forte */
+      --azul-noite: #12123a;
+      --roxo: #6d28d9;
+      --roxo-vivo: #8b5cf6;
+      --rosa: #e11d74;
+      --coral: #ff5a5f;
+      --laranja: #f97316;
+      --laranja-escuro: #c2410c;
+      --amarelo: #ffc935;
+      --verde: #0f9d76;
+      --verde-escuro: #0b6e54;
+      --azul: #2563eb;
+      --vermelho: #dc2626;
+
+      --texto: #1b1b3a;
+      --texto-suave: #4b4b6b;
+      --fundo: #fff9f2;
+      --branco: #ffffff;
+      --borda: #ece4f7;
+
+      --grad-principal: linear-gradient(135deg, var(--roxo) 0%, var(--rosa) 55%, var(--laranja) 100%);
+      --grad-quente: linear-gradient(135deg, var(--rosa), var(--laranja));
+      --grad-fresco: linear-gradient(135deg, var(--verde), var(--azul));
+
+      --raio: 22px;
+      --sombra: 0 10px 30px rgba(45, 20, 110, 0.14);
+      --sombra-forte: 0 18px 40px rgba(109, 40, 217, 0.28);
+      --base: 19px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: var(--base); scroll-behavior: smooth; }
+
+    body {
+      font-family: "Nunito", Arial, sans-serif;
+      color: var(--texto);
+      background: var(--fundo);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .logo, .numero { font-family: "Poppins", "Nunito", Arial, sans-serif; }
+
+    main { overflow-x: clip; }
+    img { max-width: 100%; display: block; }
+    a { color: var(--roxo); }
+    :focus-visible { outline: 4px solid var(--amarelo); outline-offset: 3px; }
+
+    .container { width: min(1160px, 100% - 32px); margin-inline: auto; }
+
+    .pular {
+      position: absolute; left: -9999px; top: 0;
+      background: var(--roxo); color: #fff; padding: 12px 20px; z-index: 200;
+    }
+    .pular:focus { left: 16px; top: 16px; }
+
+    /* Barra de progresso de leitura */
+    .progresso {
+      position: fixed; top: 0; left: 0; height: 6px; width: 0; z-index: 120;
+      background: var(--grad-principal);
+    }
+
+    /* ---------- Cabeçalho ---------- */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255, 249, 242, 0.92);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 0 var(--borda);
+    }
+    .topo { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 0; }
+    .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.3rem; color: var(--azul-noite); text-decoration: none; }
+    .logo .icone {
+      width: 48px; height: 48px; border-radius: 14px; background: var(--grad-principal);
+      display: grid; place-items: center; font-size: 1.4rem; transform: rotate(-8deg);
+      box-shadow: var(--sombra-forte);
+    }
+    .logo b { background: var(--grad-principal); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+    nav ul { list-style: none; display: flex; gap: 6px; }
+    nav a {
+      text-decoration: none; font-weight: 800; color: var(--texto); padding: 8px 14px; border-radius: 999px;
+      transition: background .2s, color .2s;
+    }
+    nav a:hover { background: var(--roxo); color: #fff; }
+
+    .ferramentas { display: flex; gap: 8px; align-items: center; }
+    .btn-fonte {
+      border: none; background: var(--azul-noite); color: #fff;
+      font: inherit; font-weight: 800; border-radius: 12px; min-width: 48px; min-height: 48px; cursor: pointer;
+      transition: transform .15s, background .2s;
+    }
+    .btn-fonte:hover { background: var(--rosa); transform: translateY(-2px); }
+    .menu-toggle { display: none; }
+
+    /* ---------- Botões ---------- */
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+      padding: 16px 30px; border-radius: 999px; border: none; cursor: pointer; font: inherit; font-weight: 800;
+      min-height: 58px; transition: transform .2s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-primario { background: var(--amarelo); color: var(--azul-noite); box-shadow: 0 8px 0 #d89c00; }
+    .btn-primario:hover { box-shadow: 0 11px 0 #d89c00; }
+    .btn-primario:active { transform: translateY(4px); box-shadow: 0 3px 0 #d89c00; }
+    .btn-secundario { background: transparent; color: #fff; border: 3px solid #fff; }
+    .btn-secundario:hover { background: #fff; color: var(--roxo); }
+    .btn-gradiente { background: var(--grad-principal); color: #fff; box-shadow: var(--sombra-forte); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative; overflow: hidden; color: #fff;
+      padding: 80px 0 150px;
+      background: radial-gradient(circle at 15% 20%, #3b1a8f 0%, transparent 45%),
+                  radial-gradient(circle at 85% 80%, #a3135a 0%, transparent 45%),
+                  var(--azul-noite);
+    }
+    .bolha { position: absolute; border-radius: 50%; filter: blur(2px); opacity: .9; pointer-events: none; }
+    .bolha.b1 { width: 220px; height: 220px; background: var(--grad-quente); top: -60px; right: 8%; opacity: .55; }
+    .bolha.b2 { width: 120px; height: 120px; background: var(--amarelo); bottom: 140px; left: -40px; opacity: .7; }
+    .bolha.b3 { width: 60px; height: 60px; background: var(--verde); top: 30%; left: 46%; opacity: .8; }
+    .pontos {
+      position: absolute; width: 180px; height: 180px; right: 3%; bottom: 120px; opacity: .35; pointer-events: none;
+      background-image: radial-gradient(#fff 2.5px, transparent 2.5px); background-size: 22px 22px;
+    }
+
+    .hero .grade { position: relative; display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: center; }
+    .selo {
+      display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.12); border: 2px solid rgba(255,255,255,.35);
+      color: #fff; font-weight: 800; padding: 6px 18px; border-radius: 999px; margin-bottom: 22px; font-size: 0.9rem;
+      text-transform: uppercase; letter-spacing: .08em;
+    }
+    .selo::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--amarelo); animation: pulsar 1.6s infinite; }
+    @keyframes pulsar { 0%,100% { box-shadow: 0 0 0 0 rgba(255,201,53,.8); } 50% { box-shadow: 0 0 0 8px rgba(255,201,53,0); } }
+
+    .hero h1 { font-size: clamp(2.2rem, 5.6vw, 3.8rem); line-height: 1.08; margin-bottom: 22px; font-weight: 900; }
+    .destaque { position: relative; display: inline-block; color: var(--amarelo); }
+    .destaque::after {
+      content: ""; position: absolute; left: 0; right: 0; bottom: 4px; height: 14px; z-index: -1;
+      background: var(--rosa); border-radius: 6px; transform: rotate(-1.5deg);
+    }
+    .hero h1 .destaque { z-index: 1; }
+    .hero p { font-size: 1.2rem; color: #e4defc; margin-bottom: 36px; max-width: 34ch; }
+    .acoes { display: flex; flex-wrap: wrap; gap: 18px; }
+
+    .hero-foto { position: relative; }
+    .hero-foto::before {
+      content: ""; position: absolute; inset: 0; border-radius: 36px; background: var(--grad-principal);
+      transform: rotate(5deg) translate(14px, 10px);
+    }
+    .hero-foto img {
+      position: relative; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 36px;
+      border: 6px solid #fff; box-shadow: 0 30px 60px rgba(0,0,0,.35);
+    }
+    .flutuante {
+      position: absolute; background: #fff; color: var(--azul-noite); border-radius: 18px; padding: 12px 18px;
+      box-shadow: 0 16px 34px rgba(0,0,0,.25); font-weight: 800; display: flex; align-items: center; gap: 10px;
+      animation: flutuar 4s ease-in-out infinite; font-size: .95rem;
+    }
+    .flutuante .ic { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; font-size: 1.2rem; }
+    .flutuante.f1 { left: -28px; bottom: 28px; }
+    .flutuante.f1 .ic { background: #ffe1ec; }
+    .flutuante.f2 { right: -18px; top: -18px; animation-delay: 1.5s; }
+    .flutuante.f2 .ic { background: #fff3c4; }
+    @keyframes flutuar { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+    .onda { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: 110px; }
+
+    /* Faixa rolante */
+    .faixa {
+      background: var(--amarelo); color: var(--azul-noite); transform: rotate(-1.5deg); margin: -34px -20px 0;
+      position: relative; z-index: 5; overflow: hidden; border-block: 4px solid var(--azul-noite);
+    }
+    .faixa-trilho { display: flex; width: max-content; animation: rolar 28s linear infinite; }
+    .faixa span { font-family: "Poppins", sans-serif; font-weight: 900; font-size: 1.3rem; padding: 12px 22px; white-space: nowrap; text-transform: uppercase; }
+    .faixa span::after { content: "✦"; margin-left: 44px; color: var(--rosa); }
+    @keyframes rolar { to { transform: translateX(-50%); } }
+
+    /* Pilares */
+    .pilares { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 64px; }
+    .pilar {
+      color: #fff; border-radius: var(--raio); padding: 26px 22px; box-shadow: var(--sombra);
+      transition: transform .25s; position: relative; overflow: hidden;
+    }
+    .pilar::after {
+      content: ""; position: absolute; width: 120px; height: 120px; border-radius: 50%; background: rgba(255,255,255,.15);
+      right: -40px; bottom: -40px;
+    }
+    .pilar:hover { transform: translateY(-8px) rotate(-1deg); }
+    .pilar:nth-child(1) { background: linear-gradient(135deg, #e11d48, #f43f5e); }
+    .pilar:nth-child(2) { background: linear-gradient(135deg, #6d28d9, #8b5cf6); }
+    .pilar:nth-child(3) { background: linear-gradient(135deg, #0f9d76, #14b8a6); }
+    .pilar:nth-child(4) { background: linear-gradient(135deg, #c2410c, #f97316); }
+    .pilar .emoji {
+      width: 58px; height: 58px; border-radius: 16px; background: rgba(255,255,255,.95);
+      display: grid; place-items: center; font-size: 1.7rem; margin-bottom: 14px;
+    }
+    .pilar strong { display: block; font-family: "Poppins", sans-serif; font-size: 1.1rem; line-height: 1.3; }
+    .pilar small { opacity: .95; font-size: .95rem; line-height: 1.45; display: block; margin-top: 6px; }
+
+    /* ---------- Seções ---------- */
+    section { padding: 88px 0; position: relative; }
+    .titulo-secao { text-align: center; margin-bottom: 52px; }
+    .titulo-secao.esquerda { text-align: left; margin-bottom: 26px; }
+    .titulo-secao.esquerda p { margin-inline: 0; }
+    .etiqueta-secao {
+      display: inline-block; font-weight: 900; font-size: .85rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--rosa); background: #ffe1ec; padding: 6px 16px; border-radius: 999px; margin-bottom: 14px;
+    }
+    .titulo-secao h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--azul-noite); line-height: 1.15; margin-bottom: 14px; font-weight: 900; }
+    .titulo-secao h2::after {
+      content: ""; display: block; width: 90px; height: 8px; border-radius: 99px; background: var(--grad-principal);
+      margin: 16px auto 0;
+    }
+    .titulo-secao.esquerda h2::after { margin-left: 0; }
+    .titulo-secao p { color: var(--texto-suave); max-width: 60ch; margin-inline: auto; font-size: 1.05rem; }
+
+    .alt { background: var(--branco); }
+
+    /* Fotos de seção */
+    .com-foto { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: center; }
+    .foto-moldura { position: relative; }
+    .foto-moldura::before {
+      content: ""; position: absolute; inset: 0; border-radius: 30px; transform: rotate(-4deg) translate(-12px, 12px);
+      background: var(--grad-fresco);
+    }
+    .foto-moldura.quente::before { background: var(--grad-quente); transform: rotate(4deg) translate(12px, 12px); }
+    .foto-moldura img {
+      position: relative; width: 100%; max-height: 520px; object-fit: cover; border-radius: 30px; border: 6px solid #fff;
+      box-shadow: var(--sombra);
+    }
+
+    /* Sobre */
+    .sobre .grade { display: grid; gap: 16px; }
+    .bloco {
+      display: flex; gap: 18px; align-items: flex-start; background: var(--fundo); border-radius: var(--raio); padding: 22px 24px;
+      border-left: 8px solid var(--cor, var(--roxo)); transition: transform .2s, box-shadow .2s;
+    }
+    .bloco:hover { transform: translateX(6px); box-shadow: var(--sombra); }
+    .bloco:nth-child(1) { --cor: var(--rosa); }
+    .bloco:nth-child(2) { --cor: var(--roxo); }
+    .bloco:nth-child(3) { --cor: var(--verde); }
+    .bloco .ic { flex: none; font-size: 1.8rem; width: 56px; height: 56px; border-radius: 16px; background: #fff; display: grid; place-items: center; box-shadow: var(--sombra); }
+    .bloco h3 { color: var(--azul-noite); margin-bottom: 4px; font-size: 1.2rem; }
+
+    /* Cuidados */
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+    .card {
+      background: var(--branco); border-radius: 26px; padding: 32px 28px; box-shadow: var(--sombra);
+      position: relative; overflow: hidden; transition: transform .25s, box-shadow .25s;
+      border: 3px solid transparent;
+    }
+    .card::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 10px; background: var(--cor);
+    }
+    .card:hover { transform: translateY(-10px); border-color: var(--cor); box-shadow: 0 22px 44px rgba(45,20,110,.2); }
+    .card:nth-child(1) { --cor: #16a34a; --claro: #dcfce7; }
+    .card:nth-child(2) { --cor: #2563eb; --claro: #dbeafe; }
+    .card:nth-child(3) { --cor: #f97316; --claro: #ffedd5; }
+    .card:nth-child(4) { --cor: #e11d74; --claro: #fce7f3; }
+    .card:nth-child(5) { --cor: #7c3aed; --claro: #ede9fe; }
+    .card:nth-child(6) { --cor: #0891b2; --claro: #cffafe; }
+    .card .emoji {
+      width: 74px; height: 74px; border-radius: 22px; background: var(--claro); display: grid; place-items: center;
+      font-size: 2.2rem; margin-bottom: 18px; transform: rotate(-6deg); transition: transform .3s;
+    }
+    .card:hover .emoji { transform: rotate(6deg) scale(1.1); }
+    .card h3 { font-size: 1.3rem; color: var(--azul-noite); margin-bottom: 10px; }
+    .card ul { list-style: none; color: var(--texto-suave); display: grid; gap: 6px; }
+    .card li { display: flex; gap: 10px; }
+    .card li::before { content: "●"; color: var(--cor); font-size: .8rem; margin-top: 5px; }
+
+    /* Golpes (seção escura) */
+    .escura { background: var(--azul-noite); color: #fff; overflow: hidden; }
+    .escura .titulo-secao h2 { color: #fff; }
+    .escura .titulo-secao p { color: #d6d0f5; }
+    .escura .etiqueta-secao { background: var(--amarelo); color: var(--azul-noite); }
+    .golpes ul { list-style: none; display: grid; gap: 14px; margin-top: 8px; }
+    .golpes li {
+      display: flex; gap: 14px; align-items: flex-start; background: rgba(255,255,255,.07);
+      border: 2px solid rgba(255,255,255,.12); border-radius: 16px; padding: 14px 18px;
+    }
+    .golpes li::before {
+      content: "!"; flex: none; width: 34px; height: 34px; border-radius: 10px; background: var(--amarelo); color: var(--azul-noite);
+      display: grid; place-items: center; font-weight: 900;
+    }
+
+    /* Alerta */
+    .alerta-caixa {
+      background: linear-gradient(135deg, #b91c1c, #e11d48); color: #fff; border-radius: 32px; padding: 48px;
+      display: grid; grid-template-columns: 1fr 1.1fr; gap: 36px; box-shadow: 0 24px 50px rgba(185,28,28,.35);
+      position: relative; overflow: hidden;
+    }
+    .alerta-caixa::after {
+      content: "!"; position: absolute; right: -10px; top: -70px; font-family: "Poppins", sans-serif; font-weight: 900;
+      font-size: 22rem; line-height: 1; color: rgba(255,255,255,.08); pointer-events: none;
+    }
+    .alerta-caixa h2 { font-size: clamp(1.6rem, 3.4vw, 2.3rem); line-height: 1.15; margin-bottom: 14px; font-weight: 900; }
+    .alerta-caixa p { color: #ffe4e6; font-size: 1.05rem; }
+    .alerta-caixa .ligar {
+      display: inline-flex; margin-top: 22px; background: #fff; color: #b91c1c; font-weight: 900; text-decoration: none;
+      padding: 14px 26px; border-radius: 999px; font-size: 1.15rem; box-shadow: 0 8px 0 rgba(0,0,0,.2);
+    }
+    .alerta-caixa ul { list-style: none; display: grid; gap: 12px; position: relative; z-index: 1; }
+    .alerta-caixa li {
+      background: #fff; color: var(--texto); border-radius: 14px; padding: 13px 18px; font-weight: 800;
+      display: flex; gap: 12px; align-items: center;
+    }
+    .alerta-caixa li::before { content: "⚠"; color: #dc2626; font-size: 1.2rem; }
+
+    /* Telefones */
+    .telefones { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+    .telefone {
+      text-align: center; color: #fff; border-radius: 26px; padding: 30px 18px; text-decoration: none;
+      transition: transform .2s, box-shadow .2s; position: relative; overflow: hidden; box-shadow: var(--sombra);
+    }
+    .telefone::before {
+      content: "📞"; position: absolute; right: -6px; top: -6px; font-size: 3.6rem; opacity: .18; transform: rotate(15deg);
+    }
+    .telefone:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 24px 40px rgba(0,0,0,.25); }
+    .telefone:nth-child(1) { background: linear-gradient(160deg, #dc2626, #991b1b); }
+    .telefone:nth-child(2) { background: linear-gradient(160deg, #c2410c, #9a3412); }
+    .telefone:nth-child(3) { background: linear-gradient(160deg, #6d28d9, #4c1d95); }
+    .telefone:nth-child(4) { background: linear-gradient(160deg, #0f766e, #115e59); }
+    .telefone .numero { display: block; font-size: 3.2rem; font-weight: 900; line-height: 1.05; letter-spacing: -.02em; }
+    .telefone .nome { display: block; font-weight: 800; font-size: 1.1rem; margin-top: 4px; }
+    .telefone small { display: block; opacity: .92; font-size: .92rem; }
+    .telefone .toque {
+      display: inline-block; margin-top: 14px; background: rgba(255,255,255,.2); border-radius: 999px; padding: 4px 14px;
+      font-weight: 800; font-size: .85rem;
+    }
+
+    /* Direitos */
+    .direitos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+    .direito {
+      display: flex; gap: 18px; background: #fff; border-radius: var(--raio); padding: 26px; box-shadow: var(--sombra);
+      border: 3px solid var(--borda); transition: border-color .2s, transform .2s;
+    }
+    .direito:hover { border-color: var(--roxo-vivo); transform: translateY(-4px); }
+    .direito .check {
+      flex: none; width: 48px; height: 48px; border-radius: 14px; background: var(--grad-principal); color: #fff;
+      display: grid; place-items: center; font-weight: 900; font-size: 1.3rem; transform: rotate(-6deg);
+    }
+
+    /* Galeria */
+    .galeria { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .galeria figure { position: relative; border-radius: 30px; overflow: hidden; box-shadow: var(--sombra); }
+    .galeria figure:nth-child(1) { transform: rotate(-1.5deg); }
+    .galeria figure:nth-child(2) { transform: rotate(1.5deg); }
+    .galeria img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .6s; }
+    .galeria figure:hover img { transform: scale(1.08); }
+    .galeria figcaption {
+      position: absolute; left: 18px; right: 18px; bottom: 18px; padding: 14px 20px; border-radius: 16px;
+      background: rgba(18,18,58,.82); backdrop-filter: blur(4px); color: #fff; font-weight: 800; font-size: 1.05rem;
+      border-left: 6px solid var(--amarelo);
+    }
+
+    /* FAQ */
+    .faq { max-width: 860px; margin-inline: auto; display: grid; gap: 16px; }
+    details {
+      background: var(--branco); border: 3px solid var(--borda); border-radius: 20px; padding: 4px 26px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    details[open] { border-color: var(--roxo-vivo); box-shadow: var(--sombra-forte); }
+    summary { cursor: pointer; font-weight: 800; font-size: 1.08rem; padding: 18px 0; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "+"; flex: none; width: 40px; height: 40px; border-radius: 12px; background: var(--grad-principal); color: #fff;
+      display: grid; place-items: center; font-size: 1.5rem; transition: transform .3s;
+    }
+    details[open] summary::after { transform: rotate(45deg); }
+    details p { padding-bottom: 20px; color: var(--texto-suave); }
+
+    /* Equipe */
+    .equipe-secao { background: linear-gradient(180deg, var(--fundo), #f3ecff); }
+    .equipe { display: grid; grid-template-columns: repeat(2, minmax(0, 360px)); justify-content: center; gap: 32px; }
+    .membro {
+      text-align: center; background: var(--branco); border-radius: 30px; padding: 0 26px 34px; box-shadow: var(--sombra);
+      overflow: hidden; transition: transform .25s;
+    }
+    .membro:hover { transform: translateY(-8px); }
+    .membro .capa { height: 90px; margin: 0 -26px; background: var(--grad-principal); }
+    .membro:nth-child(2) .capa { background: linear-gradient(135deg, var(--verde), var(--azul), var(--roxo)); }
+    .anel {
+      width: 168px; height: 168px; margin: -70px auto 18px; border-radius: 50%; padding: 6px;
+      background: conic-gradient(var(--amarelo), var(--rosa), var(--roxo), var(--verde), var(--amarelo));
+      animation: girar 6s linear infinite;
+    }
+    .avatar {
+      width: 100%; height: 100%; border-radius: 50%; border: 5px solid #fff;
+      background: var(--grad-principal); color: #fff;
+      display: grid; place-items: center; font-size: 2.4rem; font-weight: 800;
+      position: relative; overflow: hidden; animation: girar 6s linear infinite reverse;
+    }
+    .avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+    @keyframes girar { to { transform: rotate(360deg); } }
+    .membro h3 { color: var(--azul-noite); font-size: 1.3rem; }
+    .membro .funcao {
+      display: inline-block; margin-top: 8px; background: #ede9fe; color: var(--roxo); font-weight: 800;
+      padding: 6px 16px; border-radius: 999px; font-size: .92rem;
+    }
+
+    /* Contato */
+    .contato {
+      background: var(--grad-principal); color: #fff; overflow: hidden;
+    }
+    .contato .bolha.b1 { top: auto; bottom: -80px; right: auto; left: -60px; background: var(--amarelo); opacity: .35; }
+    .contato .grade { position: relative; display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; align-items: start; }
+    .contato .titulo-secao h2 { color: #fff; }
+    .contato .titulo-secao h2::after { background: var(--amarelo); }
+    .contato .titulo-secao p { color: #fff1f6; }
+    .contato .etiqueta-secao { background: rgba(255,255,255,.2); color: #fff; }
+    .info-contato { display: grid; gap: 14px; margin-top: 10px; }
+    .info-contato p {
+      background: rgba(255,255,255,.15); border-radius: 16px; padding: 14px 18px; font-weight: 700;
+      border: 2px solid rgba(255,255,255,.25);
+    }
+    .info-contato a { color: #fff; }
+    form { background: var(--branco); color: var(--texto); border-radius: 30px; padding: 36px; box-shadow: 0 30px 60px rgba(0,0,0,.25); display: grid; gap: 18px; }
+    label { font-weight: 800; display: block; margin-bottom: 6px; }
+    input, textarea, select {
+      width: 100%; font: inherit; padding: 14px 16px; border: 3px solid var(--borda); border-radius: 14px; background: var(--fundo);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    input:focus, textarea:focus, select:focus { border-color: var(--roxo-vivo); outline: none; box-shadow: 0 0 0 5px #ede9fe; }
+    .msg-ok { display: none; background: #dcfce7; color: #166534; padding: 14px 18px; border-radius: 14px; font-weight: 800; }
+
+    /* Rodapé */
+    footer { background: var(--azul-noite); color: #d6d0f5; padding: 56px 0 32px; position: relative; }
+    footer::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 8px; background: var(--grad-principal); }
+    footer .grade { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; }
+    footer strong { color: #fff; }
+    footer a { color: var(--amarelo); font-weight: 800; }
+    footer .aviso { margin-top: 28px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.15); font-size: 0.9rem; }
+
+    .voltar-topo {
+      position: fixed; right: 18px; bottom: 18px; width: 60px; height: 60px; border-radius: 18px;
+      background: var(--grad-principal); color: #fff; border: none; font-size: 1.6rem; font-weight: 900; cursor: pointer;
+      box-shadow: var(--sombra-forte); display: none; z-index: 90; transition: transform .2s;
+    }
+    .voltar-topo:hover { transform: translateY(-4px) rotate(-6deg); }
+
+    /* Animação ao rolar (só quando o JS está ativo) */
+    .js .revelar { opacity: 0; transform: translateY(40px); transition: opacity .7s ease, transform .7s ease; }
+    .js .revelar.visivel { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .js .revelar { opacity: 1; transform: none; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ---------- Responsivo ---------- */
+    @media (max-width: 960px) {
+      .hero .grade, .contato .grade, .alerta-caixa, .com-foto { grid-template-columns: 1fr; }
+      .cards, .pilares, .telefones { grid-template-columns: repeat(2, 1fr); }
+      .foto-moldura img { max-height: 380px; }
+      .flutuante.f1 { left: 10px; }
+      .flutuante.f2 { right: 10px; }
+      .hero { padding-bottom: 130px; }
+    }
+    @media (max-width: 800px) {
+      .menu-toggle {
+        display: inline-grid; place-items: center; min-width: 48px; min-height: 48px;
+        background: var(--grad-principal); color: #fff; border: none; border-radius: 12px; font-size: 1.4rem; cursor: pointer;
+      }
+      nav { position: absolute; left: 0; right: 0; top: 100%; background: var(--fundo); box-shadow: 0 10px 20px rgba(0,0,0,.1); display: none; }
+      nav.aberto { display: block; }
+      nav ul { flex-direction: column; gap: 4px; padding: 10px 16px 16px; }
+      nav a { display: block; padding: 12px 16px; }
+    }
+    @media (max-width: 620px) {
+      section { padding: 64px 0; }
+      .cards, .pilares, .direitos, .equipe, .galeria, .telefones { grid-template-columns: 1fr; }
+      .galeria figure { transform: none !important; }
+      .logo .nome-site { display: none; }
+      .alerta-caixa, form { padding: 26px; }
+      .flutuante { font-size: .85rem; padding: 8px 12px; }
+      .flutuante .ic { width: 32px; height: 32px; }
+      .faixa span { font-size: 1.05rem; }
+    }
+  </style>
+</head>
+<body>
+  <script>document.documentElement.classList.add('js');</script>
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+  <div class="progresso" id="progresso" aria-hidden="true"></div>
+
+  <header>
+    <div class="container topo">
+      <a href="#inicio" class="logo" aria-label="Viver Bem - página inicial">
+        <span class="icone" aria-hidden="true">🌿</span>
+        <span class="nome-site">Viver <b>Bem</b></span>
+      </a>
+
+      <nav id="menu" aria-label="Menu principal">
+        <ul>
+          <li><a href="#sobre">O projeto</a></li>
+          <li><a href="#cuidados">Cuidados</a></li>
+          <li><a href="#telefones">Telefones úteis</a></li>
+          <li><a href="#direitos">Direitos</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+
+      <div class="ferramentas">
+        <button class="btn-fonte" id="diminuir" aria-label="Diminuir tamanho da letra">A−</button>
+        <button class="btn-fonte" id="aumentar" aria-label="Aumentar tamanho da letra">A+</button>
+        <button class="menu-toggle" id="menuBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+      <span class="bolha b1" aria-hidden="true"></span>
+      <span class="bolha b2" aria-hidden="true"></span>
+      <span class="bolha b3" aria-hidden="true"></span>
+      <span class="pontos" aria-hidden="true"></span>
+
+      <div class="container grade">
+        <div>
+          <span class="selo">Projeto Extensionista</span>
+          <h1>Cuidar de quem <span class="destaque">cuidou</span> da gente.</h1>
+          <p>Informação simples e confiável sobre saúde e bem-estar na terceira idade, para idosos, familiares e cuidadores.</p>
+          <div class="acoes">
+            <a href="#cuidados" class="btn btn-primario">Ver dicas de cuidado →</a>
+            <a href="#telefones" class="btn btn-secundario">📞 Emergência</a>
+          </div>
+        </div>
+
+        <figure class="hero-foto">
+          <img src="imagens/cuidadora.webp" alt="Cuidadora de uniforme azul toma chá e conversa sorrindo com um casal de idosos em um jardim">
+          <figcaption class="flutuante f1"><span class="ic" aria-hidden="true">💖</span> Cuidado com carinho</figcaption>
+          <div class="flutuante f2" aria-hidden="true"><span class="ic">⭐</span> Informação que protege</div>
+        </figure>
+      </div>
+
+      <svg class="onda" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true">
+        <path fill="#fff9f2" d="M0,64 C240,120 480,0 720,40 C960,80 1200,120 1440,50 L1440,110 L0,110 Z"></path>
+      </svg>
+    </section>
+
+    <div class="faixa" aria-hidden="true">
+      <div class="faixa-trilho">
+        <span>Saúde</span><span>Afeto</span><span>Respeito</span><span>Autonomia</span><span>Dignidade</span><span>Alegria</span>
+        <span>Saúde</span><span>Afeto</span><span>Respeito</span><span>Autonomia</span><span>Dignidade</span><span>Alegria</span>
+      </div>
+    </div>
+
+    <div class="container pilares" aria-label="Pilares do projeto">
+      <div class="pilar revelar">
+        <span class="emoji" aria-hidden="true">❤️</span>
+        <strong>Saúde em dia</strong><small>Prevenção, consultas e uso correto de remédios.</small>
+      </div>
+      <div class="pilar revelar">
+        <span class="emoji" aria-hidden="true">🏠</span>
+        <strong>Casa segura</strong><small>Pequenas mudanças que evitam quedas.</small>
+      </div>
+      <div class="pilar revelar">
+        <span class="emoji" aria-hidden="true">🤝</span>
+        <strong>Convivência</strong><small>Companhia, afeto e mente ativa.</small>
+      </div>
+      <div class="pilar revelar">
+        <span class="emoji" aria-hidden="true">⚖️</span>
+        <strong>Direitos garantidos</strong><small>Conheça o Estatuto da Pessoa Idosa.</small>
+      </div>
+    </div>
+
+    <!-- SOBRE -->
+    <section class="sobre" id="sobre">
+      <div class="container com-foto">
+        <div class="foto-moldura revelar">
+          <img src="imagens/abraco.webp" alt="Mãos de uma pessoa abraçando por trás um senhor idoso de barba branca, que segura as mãos dela" loading="lazy">
+        </div>
+        <div class="revelar">
+          <div class="titulo-secao esquerda">
+            <span class="etiqueta-secao">Quem somos</span>
+            <h2>Sobre o projeto</h2>
+            <p>O <strong>Viver Bem</strong> é um projeto de extensão que leva à comunidade orientações práticas sobre o cuidado com a pessoa idosa.</p>
+          </div>
+          <div class="grade">
+            <div class="bloco">
+              <span class="ic" aria-hidden="true">🎯</span>
+              <div><h3>Objetivo</h3><p>Promover qualidade de vida, autonomia e dignidade para pessoas da terceira idade por meio da informação.</p></div>
+            </div>
+            <div class="bloco">
+              <span class="ic" aria-hidden="true">👥</span>
+              <div><h3>Para quem</h3><p>Idosos, familiares, cuidadores formais e informais e toda a comunidade.</p></div>
+            </div>
+            <div class="bloco">
+              <span class="ic" aria-hidden="true">📚</span>
+              <div><h3>Como</h3><p>Conteúdo acessível, rodas de conversa, orientações e encaminhamento para a rede de saúde pública.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CUIDADOS -->
+    <section class="alt" id="cuidados">
+      <div class="container">
+        <div class="titulo-secao revelar">
+          <span class="etiqueta-secao">Dia a dia</span>
+          <h2>Cuidados que fazem diferença</h2>
+          <p>Pequenos hábitos fazem grande diferença na saúde e na independência da pessoa idosa.</p>
+        </div>
+        <div class="cards">
+          <article class="card revelar">
+            <div class="emoji" aria-hidden="true">🥗</div>
+            <h3>Alimentação</h3>
+            <ul>
+              <li>Prefira frutas, verduras, legumes e grãos.</li>
+              <li>Reduza sal, açúcar e frituras.</li>
+              <li>Faça refeições em horários regulares.</li>
+            </ul>
+          </article>
+          <article class="card revelar">
+            <div class="emoji" aria-hidden="true">💧</div>
+            <h3>Hidratação</h3>
+            <ul>
+              <li>Beba água mesmo sem sentir sede.</li>
+              <li>Deixe uma garrafa sempre à vista.</li>
+              <li>Atenção redobrada em dias quentes.</li>
+            </ul>
+          </article>
+          <article class="card revelar">
+            <div class="emoji" aria-hidden="true">🚶</div>
+            <h3>Atividade física</h3>
+            <ul>
+              <li>Caminhadas leves e alongamentos.</li>
+              <li>Exercícios de equilíbrio e força.</li>
+              <li>Sempre com orientação profissional.</li>
+            </ul>
+          </article>
+          <article class="card revelar">
+            <div class="emoji" aria-hidden="true">💊</div>
+            <h3>Medicamentos</h3>
+            <ul>
+              <li>Siga a receita, nos horários certos.</li>
+              <li>Use porta-comprimidos ou tabela.</li>
+              <li>Não se automedique.</li>
+            </ul>
+          </article>
+          <article class="card revelar">
+            <div class="emoji" aria-hidden="true">🛁</div>
+            <h3>Prevenção de quedas</h3>
+            <ul>
+              <li>Tapetes antiderrapantes e barras no banheiro.</li>
+              <li>Boa iluminação, inclusive à noite.</li>
+              <li>Chinelos e sapatos firmes nos pés.</li>
+            </ul>
+          </article>
+          <article class="card revelar">
+            <div class="emoji" aria-hidden="true">🧠</div>
+            <h3>Mente e emoções</h3>
+            <ul>
+              <li>Leitura, jogos e atividades manuais.</li>
+              <li>Conversar com amigos e família.</li>
+              <li>Tristeza persistente merece atenção.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- GOLPES -->
+    <section class="escura golpes" aria-labelledby="titulo-golpes">
+      <span class="pontos" aria-hidden="true" style="top:40px; bottom:auto; left:2%; right:auto;"></span>
+      <div class="container com-foto">
+        <div class="revelar">
+          <div class="titulo-secao esquerda">
+            <span class="etiqueta-secao">Fique atento</span>
+            <h2 id="titulo-golpes">Proteja-se de golpes</h2>
+            <p>Celular e cartão facilitam a vida, mas os golpistas também miram a terceira idade.</p>
+          </div>
+          <ul>
+            <li>Banco nenhum pede senha, código ou cartão por telefone ou mensagem.</li>
+            <li>Desconfie de pedidos de dinheiro "urgentes", mesmo vindos de parentes. Ligue para a pessoa antes.</li>
+            <li>Não clique em links de prêmios, cobranças ou promoções que chegam por SMS e WhatsApp.</li>
+            <li>Na dúvida, peça ajuda a alguém de confiança antes de fazer um Pix ou uma compra.</li>
+          </ul>
+        </div>
+        <div class="foto-moldura quente revelar">
+          <img src="imagens/celular.webp" alt="Casal de idosos sorridente olhando um celular, a senhora segura um cartão" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- SINAIS DE ALERTA -->
+    <section aria-labelledby="titulo-alerta">
+      <div class="container">
+        <div class="alerta-caixa revelar">
+          <div>
+            <h2 id="titulo-alerta">Sinais de alerta: procure ajuda!</h2>
+            <p>Se a pessoa idosa apresentar algum destes sinais, procure atendimento médico imediatamente.</p>
+            <a class="ligar" href="tel:192">📞 Ligar 192 – SAMU</a>
+          </div>
+          <ul>
+            <li>Boca torta, fala enrolada ou fraqueza de um lado do corpo</li>
+            <li>Dor ou aperto forte no peito</li>
+            <li>Falta de ar ou confusão mental repentina</li>
+            <li>Queda com dor, inchaço ou batida na cabeça</li>
+            <li>Febre alta, desidratação ou não conseguir se alimentar</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TELEFONES -->
+    <section class="alt" id="telefones">
+      <div class="container">
+        <div class="titulo-secao revelar">
+          <span class="etiqueta-secao">Ligação gratuita</span>
+          <h2>Telefones úteis</h2>
+          <p>De qualquer telefone, sem custo. Toque no número para ligar pelo celular.</p>
+        </div>
+        <div class="telefones">
+          <a class="telefone revelar" href="tel:192">
+            <span class="numero">192</span>
+            <span class="nome">SAMU</span>
+            <small>Urgência médica</small>
+            <span class="toque">Toque para ligar</span>
+          </a>
+          <a class="telefone revelar" href="tel:193">
+            <span class="numero">193</span>
+            <span class="nome">Bombeiros</span>
+            <small>Resgate e acidentes</small>
+            <span class="toque">Toque para ligar</span>
+          </a>
+          <a class="telefone revelar" href="tel:100">
+            <span class="numero">100</span>
+            <span class="nome">Disque Direitos Humanos</span>
+            <small>Denúncia de violência contra idosos</small>
+            <span class="toque">Toque para ligar</span>
+          </a>
+          <a class="telefone revelar" href="tel:188">
+            <span class="numero">188</span>
+            <span class="nome">CVV</span>
+            <small>Apoio emocional, 24 horas</small>
+            <span class="toque">Toque para ligar</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIREITOS -->
+    <section id="direitos">
+      <div class="container">
+        <div class="titulo-secao revelar">
+          <span class="etiqueta-secao">Estatuto da Pessoa Idosa</span>
+          <h2>Direitos da pessoa idosa</h2>
+          <p>Garantidos pela Lei nº 10.741/2003 para pessoas com 60 anos ou mais.</p>
+        </div>
+        <div class="direitos">
+          <div class="direito revelar"><span class="check" aria-hidden="true">✓</span><p><strong>Atendimento prioritário</strong> em serviços públicos e privados, bancos e comércio.</p></div>
+          <div class="direito revelar"><span class="check" aria-hidden="true">✓</span><p><strong>Saúde pelo SUS</strong>, incluindo medicamentos de uso contínuo e atendimento domiciliar quando necessário.</p></div>
+          <div class="direito revelar"><span class="check" aria-hidden="true">✓</span><p><strong>Transporte coletivo urbano gratuito</strong> a partir dos 65 anos.</p></div>
+          <div class="direito revelar"><span class="check" aria-hidden="true">✓</span><p><strong>Proteção contra violência</strong>, abandono, negligência e abuso financeiro.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERIA -->
+    <section class="alt" aria-labelledby="titulo-galeria">
+      <div class="container">
+        <div class="titulo-secao revelar">
+          <span class="etiqueta-secao">Qualidade de vida</span>
+          <h2 id="titulo-galeria">Envelhecer com alegria</h2>
+          <p>Movimento, amizade e diversão também são saúde.</p>
+        </div>
+        <div class="galeria">
+          <figure class="revelar">
+            <img src="imagens/caminhada.webp" alt="Casal de idosos de mochila caminhando de mãos dadas pela rua" loading="lazy">
+            <figcaption>🚶 Caminhar juntos faz bem ao corpo e ao coração.</figcaption>
+          </figure>
+          <figure class="revelar">
+            <img src="imagens/amigos.webp" alt="Quatro amigos idosos com óculos coloridos de festa tirando selfie no parque" loading="lazy">
+            <figcaption>😄 Amizades e boas risadas mantêm a mente ativa.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section aria-labelledby="titulo-faq">
+      <div class="container">
+        <div class="titulo-secao revelar">
+          <span class="etiqueta-secao">Tire suas dúvidas</span>
+          <h2 id="titulo-faq">Perguntas frequentes</h2>
+        </div>
+        <div class="faq">
+          <details class="revelar">
+            <summary>Com que frequência o idoso deve ir ao médico?</summary>
+            <p>O ideal é fazer acompanhamento regular na Unidade Básica de Saúde (UBS), pelo menos uma vez ao ano, ou conforme orientação médica para quem tem doenças crônicas como pressão alta e diabetes.</p>
+          </details>
+          <details class="revelar">
+            <summary>Quais vacinas são indicadas para a terceira idade?</summary>
+            <p>Gripe (anual), COVID-19, pneumonia, tétano e outras conforme o calendário do Ministério da Saúde. Leve a caderneta de vacinação à UBS para conferir.</p>
+          </details>
+          <details class="revelar">
+            <summary>Como cuidar de quem cuida?</summary>
+            <p>O cuidador também precisa de descanso, apoio e momentos para si. Dividir tarefas com a família e buscar grupos de apoio ajuda a evitar a sobrecarga.</p>
+          </details>
+          <details class="revelar">
+            <summary>Suspeito de maus-tratos a um idoso. O que fazer?</summary>
+            <p>Denuncie pelo Disque 100. A ligação é gratuita e a denúncia pode ser anônima. Em caso de perigo imediato, ligue 190.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- EQUIPE -->
+    <section class="equipe-secao" id="equipe">
+      <div class="container">
+        <div class="titulo-secao revelar">
+          <span class="etiqueta-secao">Nossa equipe</span>
+          <h2>Quem faz o projeto</h2>
+          <p>Projeto extensionista desenvolvido e coordenado por:</p>
+        </div>
+        <div class="equipe">
+          <div class="membro revelar">
+            <div class="capa" aria-hidden="true"></div>
+            <div class="anel">
+              <div class="avatar">EP<img src="imagens/eliton.webp" alt="Foto de Eliton de Sousa Pereira" style="object-position: center 22%;" onerror="this.remove()"></div>
+            </div>
+            <h3>Eliton de Sousa Pereira</h3>
+            <span class="funcao">Idealizador e responsável</span>
+          </div>
+          <div class="membro revelar">
+            <div class="capa" aria-hidden="true"></div>
+            <div class="anel">
+              <div class="avatar">GL<img src="imagens/guilherme.webp" alt="Foto de Guilherme Landin" style="object-position: center 18%;" onerror="this.remove()"></div>
+            </div>
+            <h3>Guilherme Landin</h3>
+            <span class="funcao">Idealizador e responsável</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section class="contato" id="contato">
+      <span class="bolha b1" aria-hidden="true"></span>
+      <div class="container grade">
+        <div class="revelar">
+          <div class="titulo-secao esquerda">
+            <span class="etiqueta-secao">Contato</span>
+            <h2>Fale com a gente</h2>
+            <p>Tem dúvidas, sugestões ou quer participar das nossas ações? Envie uma mensagem.</p>
+          </div>
+          <div class="info-contato">
+            <p>📧 <a href="mailto:contato@viverbem.exemplo">contato@viverbem.exemplo</a></p>
+            <p>📍 Ações realizadas junto à comunidade local</p>
+          </div>
+        </div>
+
+        <form id="formContato" class="revelar" novalidate>
+          <div>
+            <label for="nome">Seu nome</label>
+            <input id="nome" name="nome" type="text" autocomplete="name" required>
+          </div>
+          <div>
+            <label for="email">E-mail ou telefone</label>
+            <input id="email" name="email" type="text" required>
+          </div>
+          <div>
+            <label for="assunto">Assunto</label>
+            <select id="assunto" name="assunto">
+              <option>Dúvida sobre cuidados</option>
+              <option>Quero participar</option>
+              <option>Sugestão</option>
+              <option>Outro</option>
+            </select>
+          </div>
+          <div>
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-gradiente">Enviar mensagem ✉️</button>
+          <p class="msg-ok" id="msgOk" role="status">Obrigado! Sua mensagem foi registrada. 💚</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="grade">
+        <div>
+          <strong style="font-size:1.3rem;">🌿 Viver Bem</strong>
+          <p>Cuidado na Terceira Idade · Projeto Extensionista</p>
+          <p>Eliton de Sousa Pereira e Guilherme Landin</p>
+        </div>
+        <div>
+          <p><a href="#cuidados">Cuidados</a> · <a href="#telefones">Telefones</a> · <a href="#direitos">Direitos</a> · <a href="#contato">Contato</a></p>
+        </div>
+      </div>
+      <p class="aviso">As informações deste site têm caráter educativo e não substituem a consulta com profissionais de saúde. © <span id="ano"></span> Viver Bem.</p>
+    </div>
+  </footer>
+
+  <button class="voltar-topo" id="topo" aria-label="Voltar ao topo">↑</button>
+
+  <script>
+    // Ajuste do tamanho da letra (acessibilidade)
+    const raiz = document.documentElement;
+    let tamanho = 19;
+    const aplicar = () => raiz.style.setProperty('--base', tamanho + 'px');
+    document.getElementById('aumentar').onclick = () => { if (tamanho < 26) { tamanho += 2; aplicar(); } };
+    document.getElementById('diminuir').onclick = () => { if (tamanho > 15) { tamanho -= 2; aplicar(); } };
+
+    // Menu no celular
+    const menu = document.getElementById('menu');
+    const menuBtn = document.getElementById('menuBtn');
+    menuBtn.onclick = () => {
+      const aberto = menu.classList.toggle('aberto');
+      menuBtn.setAttribute('aria-expanded', aberto);
+    };
+    menu.querySelectorAll('a').forEach(a => a.onclick = () => {
+      menu.classList.remove('aberto');
+      menuBtn.setAttribute('aria-expanded', false);
+    });
+
+    // Barra de progresso e botão voltar ao topo
+    const topo = document.getElementById('topo');
+    const progresso = document.getElementById('progresso');
+    window.addEventListener('scroll', () => {
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      progresso.style.width = (total > 0 ? window.scrollY / total * 100 : 0) + '%';
+      topo.style.display = window.scrollY > 600 ? 'block' : 'none';
+    });
+    topo.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Elementos aparecem ao rolar a página
+    const revelar = document.querySelectorAll('.revelar');
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(entradas => {
+        entradas.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visivel'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.12 });
+      revelar.forEach((el, i) => { el.style.transitionDelay = (i % 3) * 0.1 + 's'; obs.observe(el); });
+    } else {
+      revelar.forEach(el => el.classList.add('visivel'));
+    }
+
+    // Formulário (sem servidor: apenas confirma na tela)
+    document.getElementById('formContato').addEventListener('submit', e => {
+      e.preventDefault();
+      const form = e.target;
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      document.getElementById('msgOk').style.display = 'block';
+      form.reset();
+    });
+
+    document.getElementById('ano').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
