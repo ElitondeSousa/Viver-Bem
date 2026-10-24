@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidade – Viver Bem</title>
+  <meta name="description" content="Política de Privacidade do site Viver Bem, conforme a LGPD.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; base-uri 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 40V14' stroke='%2314876a' stroke-width='3' fill='none'/%3E%3Cpath d='M32 32C23 33 14 27 13 17C23 16 31 22 32 32Z' fill='%2323903f'/%3E%3Cpath d='M32 26C41 27 50 20 51 10C41 9 33 16 32 26Z' fill='%232fa84f'/%3E%3C/svg%3E">
+  <style>
+    :root { --primaria:#23903f; --primaria-escura:#1a6f30; --noite:#133a2a; --texto:#18321f; --suave:#4b6352; --fundo:#f6fbf1; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:"Nunito",Arial,sans-serif; color:var(--texto); background:var(--fundo); line-height:1.7; }
+    .wrap { width:min(820px, 100% - 32px); margin:0 auto; padding:40px 0 64px; }
+    a { color:var(--primaria-escura); }
+    h1 { color:var(--noite); font-size:clamp(1.8rem,4vw,2.4rem); margin-bottom:8px; }
+    h2 { color:var(--primaria-escura); font-size:1.2rem; margin:28px 0 8px; }
+    p, li { color:var(--texto); margin-bottom:10px; }
+    ul { padding-left:22px; }
+    .data { color:var(--suave); font-size:.9rem; margin-bottom:24px; }
+    .voltar { display:inline-block; margin-bottom:24px; font-weight:800; text-decoration:none; }
+    .box { background:#fff; border:1px solid #dcecd1; border-radius:18px; padding:28px; box-shadow:0 10px 30px rgba(19,58,42,.08); }
+    footer { color:var(--suave); font-size:.9rem; margin-top:28px; text-align:center; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="voltar" href="index.html">← Voltar ao site</a>
+    <div class="box">
+      <h1>Política de Privacidade</h1>
+      <p class="data">Projeto Viver Bem · em conformidade com a LGPD (Lei nº 13.709/2018)</p>
+
+      <p>Esta política explica como o site <strong>Viver Bem</strong> trata as informações de quem o utiliza. O projeto tem fim educativo e sem finalidade comercial.</p>
+
+      <h2>1. Quais dados coletamos</h2>
+      <p>Coletamos apenas os dados que você escolhe informar no formulário de contato:</p>
+      <ul>
+        <li><strong>Nome</strong>;</li>
+        <li><strong>E-mail ou telefone</strong>;</li>
+        <li><strong>Assunto e mensagem</strong>.</li>
+      </ul>
+      <p>Não coletamos dados sensíveis nem informações de navegação para fins de rastreamento.</p>
+
+      <h2>2. Como usamos os dados</h2>
+      <p>Os dados do formulário são usados <strong>exclusivamente para responder ao seu contato</strong>. Não vendemos, alugamos nem compartilhamos esses dados com terceiros.</p>
+      <p>Atualmente o formulário funciona apenas no seu navegador e <strong>não transmite as informações a servidores externos</strong>; caso isso mude, esta política será atualizada.</p>
+
+      <h2>3. Cookies</h2>
+      <p>Este site <strong>não utiliza cookies de rastreamento, análise ou publicidade</strong>. As fontes de texto são carregadas do Google Fonts apenas para exibição.</p>
+
+      <h2>4. Seus direitos (LGPD)</h2>
+      <p>Você pode, a qualquer momento, solicitar acesso, correção ou exclusão dos dados que nos enviou, além de retirar o consentimento. Para isso, use o contato abaixo.</p>
+
+      <h2>5. Contato</h2>
+      <p>Dúvidas sobre esta política ou sobre seus dados: <a href="mailto:contato@viverbem.exemplo">contato@viverbem.exemplo</a>.</p>
+    </div>
+    <footer>© <span id="ano"></span> Viver Bem · Eliton de Sousa Pereira e Guilherme Landin</footer>
+  </div>
+  <script>document.getElementById('ano').textContent = new Date().getFullYear();</script>
+</body>
+</html>
