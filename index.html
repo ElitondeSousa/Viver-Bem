@@ -10,30 +10,31 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* Paleta: verde-azulado (confiança/saúde) + âmbar (calor/destaque) */
-      --primaria: #0e7c86;
-      --primaria-escura: #0a5862;
-      --primaria-clara: #e2f3f1;
-      --primaria-media: #9fd6cf;
-      --noite: #0b2d3b;
-      --noite-2: #123f4f;
-      --ambar: #f2a33a;
-      --ambar-escuro: #c97a12;
-      --ambar-claro: #fff1dc;
+      /* Paleta: verde-folha vivo (parque/saúde) + amarelo-sol (destaque) */
+      --primaria: #23903f;
+      --primaria-escura: #1a6f30;
+      --primaria-clara: #e9f7df;
+      --primaria-media: #a9dc8a;
+      --lima: #9fd14b;
+      --noite: #133a2a;
+      --noite-2: #1e5238;
+      --ambar: #ffb81c;
+      --ambar-escuro: #d98f00;
+      --ambar-claro: #fff3d1;
       --alerta: #b42318;
 
-      --texto: #15303a;
-      --texto-suave: #4a6470;
-      --fundo: #f4f9f8;
+      --texto: #18321f;
+      --texto-suave: #4b6352;
+      --fundo: #f6fbf1;
       --branco: #ffffff;
-      --borda: #d8e9e6;
+      --borda: #dcecd1;
 
-      --grad-primaria: linear-gradient(135deg, var(--primaria) 0%, var(--noite) 100%);
-      --grad-destaque: linear-gradient(90deg, var(--primaria), var(--ambar));
+      --grad-primaria: linear-gradient(135deg, #2fa84f 0%, var(--noite) 100%);
+      --grad-destaque: linear-gradient(90deg, var(--primaria), var(--lima), var(--ambar));
 
       --raio: 22px;
-      --sombra: 0 10px 30px rgba(11, 45, 59, 0.10);
-      --sombra-forte: 0 22px 44px rgba(11, 45, 59, 0.20);
+      --sombra: 0 10px 30px rgba(19, 58, 42, 0.10);
+      --sombra-forte: 0 22px 44px rgba(19, 58, 42, 0.20);
       --base: 19px;
     }
 
@@ -73,13 +74,13 @@
     .logo-3d { perspective: 420px; display: inline-block; position: relative; flex: none; }
     .logo-cubo {
       display: block; position: relative; width: 54px; height: 54px; border-radius: 16px;
-      background: linear-gradient(150deg, #ffffff 0%, #e2f3f1 45%, #bfe3dd 100%);
+      background: linear-gradient(150deg, #ffffff 0%, #eef9e6 45%, #c9ecb6 100%);
       transform-style: preserve-3d;
       transform: rotateX(14deg) rotateY(-22deg);
       box-shadow:
-        1px 1px 0 #a9dad3, 2px 2px 0 #93cfc6, 3px 3px 0 #7cc4ba, 4px 4px 0 #5fb2a8,
+        1px 1px 0 #c3e8ae, 2px 2px 0 #aedd94, 3px 3px 0 #97d27a, 4px 4px 0 #7cc35e,
         5px 5px 0 var(--primaria), 6px 6px 0 var(--primaria-escura),
-        10px 14px 20px rgba(11, 45, 59, .35);
+        10px 14px 20px rgba(19, 58, 42, .35);
       animation: logo-girar 7s ease-in-out infinite;
     }
     .logo-cubo::after {
@@ -87,7 +88,7 @@
       background: linear-gradient(125deg, rgba(255,255,255,.9) 0%, rgba(255,255,255,0) 40%);
       mix-blend-mode: soft-light;
     }
-    .logo-cubo svg { position: absolute; inset: 3px; width: calc(100% - 6px); height: calc(100% - 6px); transform: translateZ(18px); filter: drop-shadow(2px 3px 2px rgba(11,45,59,.3)); }
+    .logo-cubo svg { position: absolute; inset: 3px; width: calc(100% - 6px); height: calc(100% - 6px); transform: translateZ(18px); filter: drop-shadow(2px 3px 2px rgba(19,58,42,.3)); }
     .folha { animation: folha-balanca 3.2s ease-in-out infinite alternate; }
     .folha.f-dir { animation-delay: -1.2s; }
     .folha.f-topo { animation-delay: -2s; }
@@ -109,7 +110,7 @@
     /* ---------- Cabeçalho ---------- */
     header {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(244, 249, 248, 0.92);
+      background: rgba(246, 251, 241, 0.92);
       backdrop-filter: blur(10px);
       box-shadow: 0 1px 0 var(--borda);
     }
@@ -141,7 +142,7 @@
     }
     .btn svg { width: 18px; height: 18px; flex: none; }
     .btn-destaque { background: var(--ambar); color: var(--noite); }
-    .btn-destaque:hover { background: #f6b85e; }
+    .btn-destaque:hover { background: #ffc94d; }
     .btn-contorno { background: transparent; color: #fff; border-color: rgba(255,255,255,.6); }
     .btn-contorno:hover { border-color: #fff; background: rgba(255,255,255,.08); }
     .btn-primario { background: var(--primaria); color: #fff; }
@@ -153,8 +154,9 @@
       padding: 72px 0 140px;
       /* Foto do parque ao fundo, escurecida à esquerda para o texto ficar legível */
       background:
-        linear-gradient(90deg, rgba(11,45,59,.94) 0%, rgba(11,45,59,.82) 40%, rgba(11,45,59,.55) 75%, rgba(11,45,59,.45) 100%),
-        linear-gradient(0deg, rgba(11,45,59,.6) 0%, transparent 35%),
+        radial-gradient(circle at 88% 0%, rgba(255,222,110,.35) 0%, transparent 40%),
+        linear-gradient(90deg, rgba(19,58,42,.92) 0%, rgba(19,58,42,.74) 38%, rgba(19,58,42,.25) 70%, rgba(19,58,42,.08) 100%),
+        linear-gradient(0deg, rgba(19,58,42,.55) 0%, transparent 30%),
         url("imagens/parque-ilustracao.webp") center 20% / cover no-repeat,
         var(--noite);
     }
@@ -171,7 +173,7 @@
       text-transform: uppercase; letter-spacing: .08em;
     }
     .selo::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--ambar); animation: pulsar 1.8s infinite; }
-    @keyframes pulsar { 0%,100% { box-shadow: 0 0 0 0 rgba(242,163,58,.8); } 50% { box-shadow: 0 0 0 8px rgba(242,163,58,0); } }
+    @keyframes pulsar { 0%,100% { box-shadow: 0 0 0 0 rgba(255,184,28,.8); } 50% { box-shadow: 0 0 0 8px rgba(255,184,28,0); } }
 
     .hero h1 {
       font-size: clamp(2.2rem, 5.4vw, 3.7rem); line-height: 1.1; margin-bottom: 22px; font-weight: 800;
@@ -179,29 +181,63 @@
     }
     .destaque { color: var(--ambar); position: relative; white-space: nowrap; }
     .destaque svg { position: absolute; left: 0; right: 0; bottom: -10px; width: 100%; height: 14px; }
-    .hero p { font-size: 1.18rem; color: #cfe6e6; margin-bottom: 36px; max-width: 36ch; }
+    .hero p { font-size: 1.18rem; color: #e8f6de; margin-bottom: 36px; max-width: 36ch; }
     .acoes { display: flex; flex-wrap: wrap; gap: 18px; }
 
-    /* Cena 3D */
-    .cena-3d { position: relative; height: 480px; }
-    .cena-3d canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; }
-    .cena-3d .chao {
-      position: absolute; left: 15%; right: 15%; bottom: 22px; height: 40px; border-radius: 50%;
-      background: radial-gradient(ellipse, rgba(0,0,0,.45), transparent 70%);
+    /* Cartões de dicas em 3D */
+    .pilha-3d { position: relative; height: 470px; perspective: 1300px; }
+    .pilha {
+      position: absolute; inset: 0; transform-style: preserve-3d;
+      transform: rotateY(-18deg) rotateX(8deg); transition: transform .4s ease-out;
     }
-    .cena-3d .reserva { position: absolute; inset: 0; display: grid; place-items: center; perspective: 900px; }
-    .cena-3d .reserva .logo-cubo { width: 240px; height: 240px; border-radius: 56px; }
-    .cena-3d.com-webgl .reserva { display: none; }
-    .rotulo-3d {
-      position: absolute; background: rgba(255,255,255,.95); color: var(--noite); border-radius: 16px; padding: 10px 16px;
-      box-shadow: 0 16px 34px rgba(0,0,0,.28); font-weight: 800; display: flex; align-items: center; gap: 10px; font-size: .92rem;
-      animation: flutuar 4.5s ease-in-out infinite;
+    .camada-z { position: absolute; transform-style: preserve-3d; }
+    /* Alinhados à direita para não cobrir o casal da imagem de fundo */
+    .camada-z.c1 { top: 10px; right: 50px; transform: translateZ(40px); }
+    .camada-z.c2 { top: 165px; right: -30px; transform: translateZ(130px); }
+    .camada-z.c3 { top: 320px; right: 80px; transform: translateZ(70px); }
+    .cartao-dica {
+      width: 320px; display: flex; gap: 16px; align-items: center; padding: 20px 22px; border-radius: 22px;
+      background: rgba(255,255,255,.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,.7); color: var(--texto);
+      box-shadow: 0 30px 50px rgba(10,30,20,.35), inset 0 1px 0 #fff;
+      animation: flutuar 5s ease-in-out infinite; position: relative; overflow: hidden;
     }
-    .rotulo-3d .ic { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; font-size: 1.1rem; background: var(--primaria-clara); }
-    .rotulo-3d.r1 { left: 0; top: 18%; }
-    .rotulo-3d.r2 { right: 0; bottom: 20%; animation-delay: -2s; }
-    .rotulo-3d.r2 .ic { background: var(--ambar-claro); }
-    @keyframes flutuar { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .cartao-dica::after {
+      content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--cor, var(--primaria));
+    }
+    .c2 .cartao-dica { animation-delay: -1.7s; --cor: var(--ambar); }
+    .c3 .cartao-dica { animation-delay: -3.3s; --cor: var(--alerta); }
+    .cartao-dica .ic {
+      flex: none; width: 58px; height: 58px; border-radius: 16px; display: grid; place-items: center; font-size: 1.7rem;
+      background: linear-gradient(145deg, #f4fbee, #cfeebd); box-shadow: 3px 3px 0 var(--primaria-media);
+    }
+    .c2 .cartao-dica .ic { background: linear-gradient(145deg, #fffaf0, #ffe6a6); box-shadow: 3px 3px 0 #ffd36b; }
+    .c3 .cartao-dica .ic { background: linear-gradient(145deg, #fff7f6, #fbd5d0); box-shadow: 3px 3px 0 #f3b2aa; }
+    .cartao-dica small { display: block; font-size: .78rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--primaria); }
+    .c2 .cartao-dica small { color: var(--ambar-escuro); }
+    .c3 .cartao-dica small { color: var(--alerta); }
+    .cartao-dica strong { display: block; font-family: "Poppins", sans-serif; font-size: 1.08rem; line-height: 1.25; color: var(--noite); }
+    .cartao-dica span.txt { display: block; font-size: .92rem; color: var(--texto-suave); line-height: 1.4; }
+    .brilho-sol {
+      position: absolute; width: 260px; height: 260px; right: 8%; top: -40px; border-radius: 50%; pointer-events: none;
+      background: radial-gradient(circle, rgba(255,226,120,.55), rgba(255,200,60,0) 70%);
+      transform: translateZ(-80px);
+    }
+    @keyframes flutuar { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+    /* Folhas caindo em 3D */
+    .folhas { position: absolute; inset: 0; overflow: hidden; pointer-events: none; perspective: 600px; }
+    .folha-cai {
+      position: absolute; top: -40px; width: var(--t); height: calc(var(--t) * .55);
+      background: linear-gradient(135deg, var(--c1), var(--c2)); border-radius: 0 100% 0 100%;
+      opacity: .9; animation: cair var(--d) linear var(--atraso) infinite;
+      box-shadow: inset -2px -2px 0 rgba(0,0,0,.08);
+    }
+    @keyframes cair {
+      0% { transform: translate3d(0, -40px, 0) rotateX(0) rotateY(0) rotateZ(0); }
+      50% { transform: translate3d(calc(var(--deriva) * .5), 420px, 60px) rotateX(360deg) rotateY(180deg) rotateZ(120deg); }
+      100% { transform: translate3d(var(--deriva), 900px, 0) rotateX(720deg) rotateY(360deg) rotateZ(260deg); }
+    }
 
     .onda { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: 100px; }
 
@@ -228,7 +264,7 @@
     .pilar .emoji {
       width: 60px; height: 60px; border-radius: 18px; display: grid; place-items: center; font-size: 1.7rem; margin-bottom: 14px;
       background: linear-gradient(145deg, #fff, var(--primaria-clara));
-      box-shadow: 4px 4px 0 var(--primaria-media), 8px 10px 16px rgba(11,45,59,.15);
+      box-shadow: 4px 4px 0 var(--primaria-media), 8px 10px 16px rgba(19,58,42,.15);
     }
     .pilar strong { display: block; font-family: "Poppins", sans-serif; font-size: 1.08rem; line-height: 1.3; color: var(--noite); }
     .pilar small { color: var(--texto-suave); font-size: .95rem; line-height: 1.45; display: block; margin-top: 6px; }
@@ -292,7 +328,7 @@
     .card .emoji {
       width: 74px; height: 74px; border-radius: 22px; display: grid; place-items: center; font-size: 2.1rem; margin-bottom: 18px;
       background: linear-gradient(145deg, #fff, var(--primaria-clara));
-      box-shadow: 5px 5px 0 var(--primaria-media), 10px 14px 20px rgba(11,45,59,.15);
+      box-shadow: 5px 5px 0 var(--primaria-media), 10px 14px 20px rgba(19,58,42,.15);
     }
     .card h3 { font-size: 1.28rem; color: var(--noite); margin-bottom: 10px; }
     .card ul { list-style: none; color: var(--texto-suave); display: grid; gap: 6px; }
@@ -302,7 +338,7 @@
     /* Golpes (seção escura) */
     .escura { background: linear-gradient(160deg, var(--noite-2), var(--noite)); color: #fff; overflow: hidden; }
     .escura .titulo-secao h2 { color: #fff; }
-    .escura .titulo-secao p { color: #cfe6e6; }
+    .escura .titulo-secao p { color: #e8f6de; }
     .escura .etiqueta-secao { background: var(--ambar); color: var(--noite); }
     .golpes ul { list-style: none; display: grid; gap: 14px; margin-top: 8px; }
     .golpes li {
@@ -347,7 +383,7 @@
     }
     .telefone .numero {
       display: block; font-size: 3.2rem; font-weight: 800; line-height: 1.05; letter-spacing: -.02em; color: var(--primaria);
-      text-shadow: 1px 1px 0 var(--primaria-media), 2px 2px 0 var(--primaria-media), 3px 3px 0 var(--primaria-media), 4px 6px 10px rgba(11,45,59,.2);
+      text-shadow: 1px 1px 0 var(--primaria-media), 2px 2px 0 var(--primaria-media), 3px 3px 0 var(--primaria-media), 4px 6px 10px rgba(19,58,42,.2);
     }
     .telefone .nome { display: block; font-weight: 800; font-size: 1.1rem; margin-top: 6px; color: var(--noite); }
     .telefone small { display: block; color: var(--texto-suave); font-size: .92rem; }
@@ -377,7 +413,7 @@
     .galeria figure:hover img { transform: scale(1.06); opacity: .92; }
     .galeria figcaption {
       position: absolute; left: 16px; right: 16px; bottom: 16px; padding: 14px 18px; border-radius: 16px;
-      background: rgba(11,45,59,.85); backdrop-filter: blur(4px); color: #fff; font-weight: 800; font-size: 1rem;
+      background: rgba(19,58,42,.85); backdrop-filter: blur(4px); color: #fff; font-weight: 800; font-size: 1rem;
       border-left: 5px solid var(--ambar);
     }
 
@@ -411,7 +447,7 @@
     }
     .anel {
       width: 160px; height: 160px; margin: -70px auto 18px; border-radius: 50%; padding: 4px; position: relative;
-      background: var(--primaria); box-shadow: 0 12px 24px rgba(11,45,59,.2);
+      background: var(--primaria); box-shadow: 0 12px 24px rgba(19,58,42,.2);
     }
     .avatar {
       width: 100%; height: 100%; border-radius: 50%; border: 5px solid #fff;
@@ -431,7 +467,7 @@
     .contato .grade { position: relative; display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; align-items: start; }
     .contato .titulo-secao h2 { color: #fff; }
     .contato .titulo-secao h2::after { background: var(--ambar); }
-    .contato .titulo-secao p { color: #d7eeec; }
+    .contato .titulo-secao p { color: #e8f6de; }
     .contato .etiqueta-secao { background: rgba(255,255,255,.15); color: #fff; }
     .info-contato { display: grid; gap: 14px; margin-top: 10px; }
     .info-contato p {
@@ -449,7 +485,7 @@
     .msg-ok { display: none; background: var(--primaria-clara); color: var(--primaria-escura); padding: 14px 18px; border-radius: 14px; font-weight: 800; }
 
     /* Rodapé */
-    footer { background: var(--noite); color: #b9d3d6; padding: 56px 0 32px; position: relative; }
+    footer { background: var(--noite); color: #cfe6c4; padding: 56px 0 32px; position: relative; }
     footer::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: var(--grad-destaque); }
     footer .grade { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; }
     footer .marca { display: flex; align-items: center; gap: 18px; }
@@ -481,7 +517,7 @@
       .cards, .pilares, .telefones { grid-template-columns: repeat(2, 1fr); }
       .galeria { grid-template-columns: 1fr 1fr; }
       .foto-moldura img { max-height: 380px; }
-      .cena-3d { height: 380px; }
+      .pilha-3d { height: 440px; max-width: 560px; }
       .hero { padding-bottom: 120px; }
     }
     @media (max-width: 800px) {
@@ -499,9 +535,12 @@
       .cards, .pilares, .direitos, .equipe, .galeria, .telefones { grid-template-columns: 1fr; }
       .logo .nome-site { display: none; }
       .alerta-caixa, form { padding: 26px; }
-      .cena-3d { height: 320px; }
-      .rotulo-3d { font-size: .82rem; padding: 8px 12px; }
-      .rotulo-3d .ic { width: 30px; height: 30px; }
+      /* No celular os cartões ficam empilhados, sem perspectiva */
+      .pilha-3d { height: auto; perspective: none; }
+      .pilha { position: static; transform: none !important; display: grid; gap: 14px; }
+      .camada-z, .camada-z.c1, .camada-z.c2, .camada-z.c3 { position: static; transform: none; }
+      .cartao-dica { width: 100%; padding: 16px 18px; }
+      .brilho-sol { display: none; }
       .faixa span { font-size: 1rem; }
       .foto-moldura .camada, .foto-moldura.inverter .camada { transform: none; }
     }
@@ -582,11 +621,12 @@
     <!-- HERO -->
     <section class="hero" id="inicio">
       <span class="grade-pontos" aria-hidden="true"></span>
+      <div class="folhas" id="folhas" aria-hidden="true"></div>
 
       <div class="container grade">
         <div>
           <span class="selo">Projeto Extensionista</span>
-          <h1>Cuidar de quem <span class="destaque">cuidou<svg viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2 10 Q50 2 100 8 T198 6" stroke="#f2a33a" stroke-width="5" fill="none" stroke-linecap="round"/></svg></span> da gente.</h1>
+          <h1>Cuidar de quem <span class="destaque">cuidou<svg viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2 10 Q50 2 100 8 T198 6" stroke="#ffb81c" stroke-width="5" fill="none" stroke-linecap="round"/></svg></span> da gente.</h1>
           <p>Informação simples e confiável sobre saúde e bem-estar na terceira idade, para idosos, familiares e cuidadores.</p>
           <div class="acoes">
             <a href="#cuidados" class="btn btn-destaque">Ver dicas de cuidado</a>
@@ -594,18 +634,33 @@
           </div>
         </div>
 
-        <div class="cena-3d" id="cena3d" role="img" aria-label="Ilustração 3D de uma planta num vaso, cercada por corações e cruzes de saúde flutuando">
-          <span class="chao" aria-hidden="true"></span>
-          <div class="reserva" aria-hidden="true">
-            <span class="logo-cubo"><svg><use href="#planta"/></svg></span>
+        <div class="pilha-3d" id="pilha3d" aria-label="Dicas rápidas">
+          <div class="pilha" id="pilha">
+            <span class="brilho-sol" aria-hidden="true"></span>
+            <div class="camada-z c1">
+              <div class="cartao-dica">
+                <span class="ic" aria-hidden="true">💧</span>
+                <div><small>Dica do dia</small><strong>Beba água</strong><span class="txt">Mesmo sem sede, ao longo do dia.</span></div>
+              </div>
+            </div>
+            <div class="camada-z c2">
+              <div class="cartao-dica">
+                <span class="ic" aria-hidden="true">🚶</span>
+                <div><small>Movimento</small><strong>Caminhe com calma</strong><span class="txt">Passeios leves fazem bem ao corpo e à mente.</span></div>
+              </div>
+            </div>
+            <div class="camada-z c3">
+              <div class="cartao-dica">
+                <span class="ic" aria-hidden="true">🚑</span>
+                <div><small>Emergência</small><strong>Ligue 192</strong><span class="txt">SAMU, gratuito e 24 horas.</span></div>
+              </div>
+            </div>
           </div>
-          <div class="rotulo-3d r1" aria-hidden="true"><span class="ic">💚</span> Cuidado com carinho</div>
-          <div class="rotulo-3d r2" aria-hidden="true"><span class="ic">⭐</span> Informação que protege</div>
         </div>
       </div>
 
       <svg class="onda" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
-        <path fill="#f4f9f8" d="M0,60 C240,110 480,0 720,36 C960,72 1200,110 1440,46 L1440,100 L0,100 Z"></path>
+        <path fill="#f6fbf1" d="M0,60 C240,110 480,0 720,36 C960,72 1200,110 1440,46 L1440,100 L0,100 Z"></path>
       </svg>
     </section>
 
@@ -981,8 +1036,6 @@
   </footer>
 
   <button class="voltar-topo" id="topo" aria-label="Voltar ao topo">↑</button>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
     const reduzirMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -1037,161 +1090,38 @@
           const y = (e.clientY - r.top) / r.height - 0.5;
           el.style.transitionDelay = '0s';
           el.style.transform = `rotateY(${x * 14}deg) rotateX(${-y * 14}deg) translateY(-6px)`;
-          el.style.boxShadow = `${-x * 24}px ${20 - y * 12}px 40px rgba(11,45,59,.22)`;
+          el.style.boxShadow = `${-x * 24}px ${20 - y * 12}px 40px rgba(19,58,42,.22)`;
         });
         el.addEventListener('pointerleave', () => { el.style.transform = ''; el.style.boxShadow = ''; });
       });
     }
 
-    // Cena 3D do topo (planta, corações e cruzes de saúde)
-    (function cena3D() {
-      const caixa = document.getElementById('cena3d');
-      if (!window.THREE || !caixa) return;
-      let renderer;
-      try {
-        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-      } catch (e) { return; }
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      renderer.outputEncoding = THREE.sRGBEncoding;
-      caixa.prepend(renderer.domElement);
-      caixa.classList.add('com-webgl');
-
-      const cena = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
-      camera.position.set(0, 0.6, 11);
-
-      cena.add(new THREE.HemisphereLight(0xffffff, 0x0b2d3b, 0.85));
-      const sol = new THREE.DirectionalLight(0xffffff, 1.0);
-      sol.position.set(5, 8, 6);
-      cena.add(sol);
-      const luzQuente = new THREE.PointLight(0xf2a33a, 0.9, 20);
-      luzQuente.position.set(-4, -2, 4);
-      cena.add(luzQuente);
-
-      const mat = (cor, extra = {}) => new THREE.MeshStandardMaterial(Object.assign({ color: cor, roughness: 0.45, metalness: 0.05 }, extra));
-
-      // Planta no vaso
-      const planta = new THREE.Group();
-      const vaso = new THREE.Mesh(new THREE.CylinderGeometry(1.05, 0.75, 1.3, 48), mat(0xe8923a, { roughness: 0.55 }));
-      vaso.position.y = -1.6;
-      const borda = new THREE.Mesh(new THREE.TorusGeometry(1.06, 0.14, 20, 60), mat(0xf6b04f));
-      borda.rotation.x = Math.PI / 2;
-      borda.position.y = -0.95;
-      const terra = new THREE.Mesh(new THREE.CylinderGeometry(0.98, 0.98, 0.08, 40), mat(0x5b3a1e, { roughness: 0.9 }));
-      terra.position.y = -0.98;
-      const caule = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.09, 2.2, 12), mat(0x14876a));
-      caule.position.y = 0.1;
-      planta.add(vaso, borda, terra, caule);
-
-      const folhas = [];
-      const geoFolha = new THREE.SphereGeometry(1, 32, 16);
-      const folhaInfo = [
-        { y: -0.4, ang: 0.0,  incl: 0.9, tam: 0.95, cor: 0x1f9e78 },
-        { y: -0.2, ang: 2.1,  incl: 0.9, tam: 0.9,  cor: 0x2fb488 },
-        { y: 0.1,  ang: 4.2,  incl: 0.85, tam: 0.85, cor: 0x1f9e78 },
-        { y: 0.45, ang: 1.0,  incl: 0.7, tam: 0.75, cor: 0x46c79a },
-        { y: 0.65, ang: 3.3,  incl: 0.7, tam: 0.7,  cor: 0x2fb488 },
-        { y: 1.15, ang: 0.0,  incl: 0.05, tam: 0.6, cor: 0x5fd3a8 }
-      ];
-      folhaInfo.forEach((f, i) => {
-        const pivo = new THREE.Group();
-        pivo.position.y = f.y;
-        pivo.rotation.y = f.ang;
-        const folha = new THREE.Mesh(geoFolha, mat(f.cor, { roughness: 0.35 }));
-        folha.scale.set(0.34 * f.tam, 0.9 * f.tam, 0.07);
-        folha.position.y = 0.85 * f.tam;
-        const braco = new THREE.Group();
-        braco.rotation.z = -f.incl;
-        braco.add(folha);
-        pivo.add(braco);
-        planta.add(pivo);
-        folhas.push({ braco, base: -f.incl, fase: i * 1.3 });
+    // Cartões do topo acompanham o mouse em 3D
+    const pilha = document.getElementById('pilha');
+    const hero = document.getElementById('inicio');
+    if (!reduzirMovimento && window.matchMedia('(hover: hover)').matches && pilha) {
+      hero.addEventListener('pointermove', e => {
+        const r = hero.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        pilha.style.transform = `rotateY(${-18 + x * 16}deg) rotateX(${8 - y * 10}deg)`;
       });
-      planta.position.y = -0.2;
-      cena.add(planta);
+      hero.addEventListener('pointerleave', () => { pilha.style.transform = ''; });
+    }
 
-      // Corações
-      const forma = new THREE.Shape();
-      forma.moveTo(5, 5);
-      forma.bezierCurveTo(5, 5, 4, 0, 0, 0);
-      forma.bezierCurveTo(-6, 0, -6, 7, -6, 7);
-      forma.bezierCurveTo(-6, 11, -3, 15.4, 5, 19);
-      forma.bezierCurveTo(12, 15.4, 16, 11, 16, 7);
-      forma.bezierCurveTo(16, 7, 16, 0, 10, 0);
-      forma.bezierCurveTo(7, 0, 5, 5, 5, 5);
-      const geoCoracao = new THREE.ExtrudeGeometry(forma, { depth: 4, bevelEnabled: true, bevelSegments: 6, bevelSize: 1.6, bevelThickness: 1.6, curveSegments: 24 });
-      geoCoracao.center();
-      geoCoracao.rotateZ(Math.PI);
-      geoCoracao.scale(0.045, 0.045, 0.045);
-
-      // Cruz de saúde
-      const novaCruz = cor => {
-        const g = new THREE.Group();
-        const m = mat(cor, { roughness: 0.3 });
-        g.add(new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.3, 0.3), m));
-        g.add(new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.9, 0.3), m));
-        return g;
-      };
-
-      const flutuantes = [];
-      const adicionar = (obj, x, y, z, vel) => {
-        obj.position.set(x, y, z);
-        cena.add(obj);
-        flutuantes.push({ obj, y, vel, fase: Math.random() * 6 });
-      };
-      adicionar(new THREE.Mesh(geoCoracao, mat(0xef6b5b, { roughness: 0.3 })), -2.4, 1.5, 0.5, 0.9);
-      adicionar(new THREE.Mesh(geoCoracao, mat(0xf2a33a, { roughness: 0.3 })), 2.4, -1.3, 0.8, 1.1);
-      adicionar(novaCruz(0xffffff), 2.3, 1.9, -0.5, 0.7);
-      adicionar(novaCruz(0x9fd6cf), -2.5, -1.6, -0.3, 1.0);
-      adicionar(new THREE.Mesh(new THREE.IcosahedronGeometry(0.28, 2), mat(0x9fd6cf, { roughness: 0.2 })), 1.6, 2.6, -1.2, 1.3);
-      adicionar(new THREE.Mesh(new THREE.IcosahedronGeometry(0.2, 2), mat(0xf2a33a, { roughness: 0.2 })), -1.5, -2.6, 1.0, 1.5);
-      adicionar(new THREE.Mesh(new THREE.IcosahedronGeometry(0.18, 2), mat(0xffffff, { roughness: 0.2 })), -1.2, 2.9, -1.5, 0.8);
-
-      // Mouse muda levemente o ângulo da cena
-      let alvoX = 0, alvoY = 0;
-      caixa.addEventListener('pointermove', e => {
-        const r = caixa.getBoundingClientRect();
-        alvoX = ((e.clientX - r.left) / r.width - 0.5) * 0.6;
-        alvoY = ((e.clientY - r.top) / r.height - 0.5) * 0.3;
-      });
-      caixa.addEventListener('pointerleave', () => { alvoX = 0; alvoY = 0; });
-
-      const ajustar = () => {
-        const w = caixa.clientWidth, h = caixa.clientHeight;
-        renderer.setSize(w, h, false);
-        camera.aspect = w / h;
-        // Afasta a câmera em telas estreitas para nada ser cortado nas laterais
-        camera.position.z = Math.max(10.5, 3.6 / (Math.tan(THREE.MathUtils.degToRad(17.5)) * camera.aspect));
-        camera.updateProjectionMatrix();
-      };
-      new ResizeObserver(ajustar).observe(caixa);
-      ajustar();
-
-      let visivel = true;
-      new IntersectionObserver(([e]) => { visivel = e.isIntersecting; }).observe(caixa);
-
-      const relogio = new THREE.Clock();
-      const quadro = () => {
-        const t = relogio.getElapsedTime();
-        planta.rotation.y = t * 0.35;
-        planta.position.y = -0.2 + Math.sin(t * 1.2) * 0.08;
-        folhas.forEach(f => { f.braco.rotation.z = f.base + Math.sin(t * 1.6 + f.fase) * 0.06; });
-        flutuantes.forEach(f => {
-          f.obj.position.y = f.y + Math.sin(t * f.vel + f.fase) * 0.25;
-          f.obj.rotation.y = t * f.vel * 0.8;
-          f.obj.rotation.x = Math.sin(t * 0.5 + f.fase) * 0.3;
-        });
-        cena.rotation.y += (alvoX - cena.rotation.y) * 0.05;
-        cena.rotation.x += (alvoY - cena.rotation.x) * 0.05;
-        renderer.render(cena, camera);
-      };
-
-      if (reduzirMovimento) {
-        quadro();
-      } else {
-        renderer.setAnimationLoop(() => { if (visivel) quadro(); });
+    // Folhas caindo no topo
+    const folhas = document.getElementById('folhas');
+    if (!reduzirMovimento && folhas) {
+      const cores = [['#c6e86a', '#5bb544'], ['#9fd14b', '#2f9a45'], ['#ffd45c', '#9fd14b'], ['#7fcf5a', '#23903f']];
+      for (let i = 0; i < 14; i++) {
+        const f = document.createElement('span');
+        const [c1, c2] = cores[i % cores.length];
+        f.className = 'folha-cai';
+        f.style.cssText = `left:${Math.random() * 100}%; --t:${14 + Math.random() * 16}px; --c1:${c1}; --c2:${c2};` +
+          `--d:${9 + Math.random() * 8}s; --atraso:${-Math.random() * 16}s; --deriva:${(Math.random() - 0.3) * 260}px;`;
+        folhas.appendChild(f);
       }
-    })();
+    }
 
     // Formulário (sem servidor: apenas confirma na tela)
     document.getElementById('formContato').addEventListener('submit', e => {
