@@ -127,27 +127,25 @@
     .ferramentas { display: flex; gap: 8px; align-items: center; }
     .btn-fonte {
       border: 2px solid var(--primaria); background: var(--branco); color: var(--primaria-escura);
-      font: inherit; font-weight: 800; border-radius: 12px; min-width: 48px; min-height: 48px; cursor: pointer;
-      box-shadow: 0 4px 0 var(--primaria-media); transition: transform .15s, box-shadow .15s;
+      font: inherit; font-weight: 800; border-radius: 10px; min-width: 48px; min-height: 48px; cursor: pointer;
+      transition: background-color .2s;
     }
-    .btn-fonte:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--primaria-media); }
-    .btn-fonte:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--primaria-media); }
+    .btn-fonte:hover { background: var(--primaria-clara); }
     .menu-toggle { display: none; }
 
-    /* ---------- Botões (com profundidade) ---------- */
+    /* ---------- Botões ---------- */
     .btn {
-      display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
-      padding: 16px 30px; border-radius: 999px; border: none; cursor: pointer; font: inherit; font-weight: 800;
-      min-height: 58px; transition: transform .15s, box-shadow .15s;
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none;
+      padding: 14px 26px; border-radius: 10px; border: 2px solid transparent; cursor: pointer;
+      font: inherit; font-weight: 700; min-height: 54px; transition: background-color .2s, color .2s, border-color .2s;
     }
-    .btn-destaque { background: var(--ambar); color: var(--noite); box-shadow: 0 7px 0 var(--ambar-escuro), 0 14px 24px rgba(0,0,0,.2); }
-    .btn-destaque:hover { transform: translateY(-3px); box-shadow: 0 10px 0 var(--ambar-escuro), 0 18px 28px rgba(0,0,0,.22); }
-    .btn-destaque:active { transform: translateY(5px); box-shadow: 0 2px 0 var(--ambar-escuro); }
-    .btn-contorno { background: transparent; color: #fff; border: 3px solid rgba(255,255,255,.85); }
-    .btn-contorno:hover { background: #fff; color: var(--noite); }
-    .btn-primario { background: var(--primaria); color: #fff; box-shadow: 0 7px 0 var(--primaria-escura); }
-    .btn-primario:hover { transform: translateY(-3px); box-shadow: 0 10px 0 var(--primaria-escura); }
-    .btn-primario:active { transform: translateY(5px); box-shadow: 0 2px 0 var(--primaria-escura); }
+    .btn svg { width: 18px; height: 18px; flex: none; }
+    .btn-destaque { background: var(--ambar); color: var(--noite); }
+    .btn-destaque:hover { background: #f6b85e; }
+    .btn-contorno { background: transparent; color: #fff; border-color: rgba(255,255,255,.6); }
+    .btn-contorno:hover { border-color: #fff; background: rgba(255,255,255,.08); }
+    .btn-primario { background: var(--primaria); color: #fff; }
+    .btn-primario:hover { background: var(--primaria-escura); }
 
     /* ---------- Hero ---------- */
     .hero {
@@ -327,9 +325,11 @@
     .alerta-caixa p { color: var(--texto-suave); font-size: 1.05rem; }
     .alerta-caixa .ligar {
       display: inline-flex; margin-top: 22px; background: var(--alerta); color: #fff; font-weight: 800; text-decoration: none;
-      padding: 14px 26px; border-radius: 999px; font-size: 1.12rem; box-shadow: 0 7px 0 #7a1810; transition: transform .15s, box-shadow .15s;
+      padding: 14px 24px; border-radius: 10px; font-size: 1.08rem; transition: background-color .2s;
+      align-items: center; gap: 10px;
     }
-    .alerta-caixa .ligar:hover { transform: translateY(-3px); box-shadow: 0 10px 0 #7a1810; }
+    .alerta-caixa .ligar svg { width: 18px; height: 18px; }
+    .alerta-caixa .ligar:hover { background: #8f1c13; }
     .alerta-caixa ul { list-style: none; display: grid; gap: 12px; }
     .alerta-caixa li {
       background: #fff6f5; border-radius: 14px; padding: 13px 18px; font-weight: 800;
@@ -408,18 +408,16 @@
       background-image: radial-gradient(#fff 1.5px, transparent 1.5px); background-size: 16px 16px;
     }
     .anel {
-      width: 164px; height: 164px; margin: -70px auto 18px; border-radius: 50%; padding: 6px; position: relative;
-      background: conic-gradient(var(--primaria), var(--ambar), var(--primaria-media), var(--primaria));
-      animation: girar 8s linear infinite; box-shadow: 0 14px 28px rgba(11,45,59,.25);
+      width: 160px; height: 160px; margin: -70px auto 18px; border-radius: 50%; padding: 4px; position: relative;
+      background: var(--primaria); box-shadow: 0 12px 24px rgba(11,45,59,.2);
     }
     .avatar {
       width: 100%; height: 100%; border-radius: 50%; border: 5px solid #fff;
       background: var(--grad-primaria); color: #fff;
       display: grid; place-items: center; font-size: 2.4rem; font-weight: 800;
-      position: relative; overflow: hidden; animation: girar 8s linear infinite reverse;
+      position: relative; overflow: hidden;
     }
     .avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
-    @keyframes girar { to { transform: rotate(360deg); } }
     .membro h3 { color: var(--noite); font-size: 1.28rem; }
     .membro .funcao {
       display: inline-block; margin-top: 8px; background: var(--primaria-clara); color: var(--primaria-escura); font-weight: 800;
@@ -458,11 +456,11 @@
     footer .aviso { margin-top: 28px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.12); font-size: 0.9rem; }
 
     .voltar-topo {
-      position: fixed; right: 18px; bottom: 18px; width: 60px; height: 60px; border-radius: 18px;
-      background: var(--primaria); color: #fff; border: none; font-size: 1.6rem; font-weight: 900; cursor: pointer;
-      box-shadow: 0 6px 0 var(--primaria-escura), var(--sombra-forte); display: none; z-index: 90; transition: transform .15s;
+      position: fixed; right: 18px; bottom: 18px; width: 56px; height: 56px; border-radius: 12px;
+      background: var(--primaria); color: #fff; border: none; font-size: 1.5rem; font-weight: 800; cursor: pointer;
+      box-shadow: var(--sombra); display: none; z-index: 90; transition: background-color .2s;
     }
-    .voltar-topo:hover { transform: translateY(-3px); }
+    .voltar-topo:hover { background: var(--primaria-escura); }
 
     /* Animação ao rolar */
     .js .revelar { opacity: 0; transform: translateY(40px); transition: opacity .7s ease, transform .7s ease; }
@@ -487,8 +485,7 @@
     @media (max-width: 800px) {
       .menu-toggle {
         display: inline-grid; place-items: center; min-width: 48px; min-height: 48px;
-        background: var(--primaria); color: #fff; border: none; border-radius: 12px; font-size: 1.4rem; cursor: pointer;
-        box-shadow: 0 4px 0 var(--primaria-escura);
+        background: var(--primaria); color: #fff; border: none; border-radius: 10px; font-size: 1.4rem; cursor: pointer;
       }
       nav { position: absolute; left: 0; right: 0; top: 100%; background: var(--fundo); box-shadow: 0 10px 20px rgba(0,0,0,.1); display: none; }
       nav.aberto { display: block; }
@@ -590,8 +587,8 @@
           <h1>Cuidar de quem <span class="destaque">cuidou<svg viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2 10 Q50 2 100 8 T198 6" stroke="#f2a33a" stroke-width="5" fill="none" stroke-linecap="round"/></svg></span> da gente.</h1>
           <p>Informação simples e confiável sobre saúde e bem-estar na terceira idade, para idosos, familiares e cuidadores.</p>
           <div class="acoes">
-            <a href="#cuidados" class="btn btn-destaque">Ver dicas de cuidado →</a>
-            <a href="#telefones" class="btn btn-contorno">📞 Emergência</a>
+            <a href="#cuidados" class="btn btn-destaque">Ver dicas de cuidado</a>
+            <a href="#telefones" class="btn btn-contorno"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Telefones de emergência</a>
           </div>
         </div>
 
@@ -766,7 +763,7 @@
           <div>
             <h2 id="titulo-alerta">⚠️ Sinais de alerta: procure ajuda</h2>
             <p>Se a pessoa idosa apresentar algum destes sinais, procure atendimento médico imediatamente.</p>
-            <a class="ligar" href="tel:192">📞 Ligar 192 – SAMU</a>
+            <a class="ligar" href="tel:192"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Ligar 192 (SAMU)</a>
           </div>
           <ul>
             <li>Boca torta, fala enrolada ou fraqueza de um lado do corpo</li>
@@ -895,17 +892,17 @@
           <p>Projeto extensionista desenvolvido e coordenado por:</p>
         </div>
         <div class="equipe">
-          <div class="membro tilt revelar">
+          <div class="membro revelar">
             <div class="capa" aria-hidden="true"></div>
-            <div class="anel profundo">
+            <div class="anel">
               <div class="avatar">EP<img src="imagens/eliton.webp" alt="Foto de Eliton de Sousa Pereira" style="object-position: center 22%;" onerror="this.remove()"></div>
             </div>
             <h3>Eliton de Sousa Pereira</h3>
             <span class="funcao">Idealizador e responsável</span>
           </div>
-          <div class="membro tilt revelar">
+          <div class="membro revelar">
             <div class="capa" aria-hidden="true"></div>
-            <div class="anel profundo">
+            <div class="anel">
               <div class="avatar">GL<img src="imagens/guilherme.webp" alt="Foto de Guilherme Landin" style="object-position: center 18%;" onerror="this.remove()"></div>
             </div>
             <h3>Guilherme Landin</h3>
@@ -952,7 +949,7 @@
             <label for="mensagem">Mensagem</label>
             <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
           </div>
-          <button type="submit" class="btn btn-primario">Enviar mensagem ✉️</button>
+          <button type="submit" class="btn btn-primario">Enviar mensagem</button>
           <p class="msg-ok" id="msgOk" role="status">Obrigado! Sua mensagem foi registrada. 💚</p>
         </form>
       </div>
